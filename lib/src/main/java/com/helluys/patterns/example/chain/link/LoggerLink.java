@@ -12,6 +12,6 @@ final class LoggerLink implements EndLink<String> {
 
 	@Override
 	public final void accept(final String t) {
-		System.out.println(prefix + t);
+		System.out.println(prefix + "'" + t + "'");
 	}
 }

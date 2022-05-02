@@ -160,15 +160,15 @@ public interface Either<L, R> {
 	/**
 	 * Reduce the value to a common type.
 	 *
-	 * @param <T>         the resulting type
-	 * @param leftMapper  the mapping function in case this {@link Either} is left
-	 *                    valued
-	 * @param rightMapper the mapping function in case this {@link Either} is right
-	 *                    valued
+	 * @param <T>          the resulting type
+	 * @param leftReducer  the reducing function in case this {@link Either} is left
+	 *                     valued
+	 * @param rightReducer the reducing function in case this {@link Either} is right
+	 *                     valued
 	 * @return the reduced value
 	 */
-	default <T> T reduce(final Function<L, T> leftMapper, final Function<R, T> rightMapper) {
-		return isLeft() ? leftMapper.apply(left()) : rightMapper.apply(right());
+	default <T> T reduce(final Function<L, T> leftReducer, final Function<R, T> rightReducer) {
+		return isLeft() ? leftReducer.apply(left()) : rightReducer.apply(right());
 	}
 
 	/**

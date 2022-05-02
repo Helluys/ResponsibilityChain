@@ -1,5 +1,6 @@
 package com.helluys.patterns.example.chain.processors;
 
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,8 +12,14 @@ import com.helluys.patterns.example.chain.command.NamedCommand;
 public final class TextParser {
 	private static final Pattern TEXT_PATTERN = Pattern.compile("\\[([A-Z]*)](.*)");
 
-	private TextParser() {
-		// Nothing
+	private final Set<String> sources;
+
+	public TextParser(final Set<String> sources) {
+		this.sources = sources;
+	}
+
+	public final boolean isText(final Command c) {
+		return sources.contains(c.source());
 	}
 
 	public static final Either<ErroneousCommand, NamedCommand> parse(final Command command) {
